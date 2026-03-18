@@ -54,7 +54,7 @@ The earliest and most widely adopted approach adapts the standard MOSFET SPICE L
 
 **Wan Zaidi, Costa, Munzenrieder et al. (2018)** [5] developed a flexible IGZO TFT SPICE model capable of predicting strain effects, and designed active strain-compensation circuits for bendable active matrix arrays. This work is critical for emerging flexible display and sensor applications.
 
-**Kim, Seo, Jang et al. (2021)** [7] presented reliability-aware SPICE-compatible compact modeling of IGZO inverters on a flexible PET substrate with ALD Al₂O₃ gate insulator, addressing threshold voltage shift under mechanical stress.
+**Kim, Seo, Jang et al. (2021)** [7] presented reliability-aware SPICE-compatible compact modeling of IGZO inverters on a flexible PET substrate with ALD Al$_2$O$_3$ gate insulator, addressing threshold voltage shift under mechanical stress.
 
 ### 4.2 Display Applications
 
@@ -64,7 +64,7 @@ The earliest and most widely adopted approach adapts the standard MOSFET SPICE L
 
 ### 4.3 IGZO-Based Memory Devices
 
-**Kim, Lee, Yang et al. (2022)** [9] introduced a compact SPICE model of a two-terminal memristor with Pd/Ti/IGZO/p⁺-Si structure, systematically separating short- and long-term memory components modulated by IGZO oxygen content.
+**Kim, Lee, Yang et al. (2022)** [9] introduced a compact SPICE model of a two-terminal memristor with Pd/Ti/IGZO/p$^+$-Si structure, systematically separating short- and long-term memory components modulated by IGZO oxygen content.
 
 **Jang, Min, Kim et al. (2020)** [10] developed a highly reliable physics-based SPICE compact model of IGZO memristors, considering the dependence on electrode metals and deposition sequence with non-quasi-statically updated Schottky barrier heights.
 
