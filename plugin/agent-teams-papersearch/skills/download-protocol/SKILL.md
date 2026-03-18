@@ -62,7 +62,8 @@ async (page) => {
 
 Key rules:
 
+- **ASK USER FOR CONFIRMATION before opening browser tabs** — show the list of papers and ask "Open N tabs? (y/n)"
 - Open ALL failed papers at once — one tab per paper
 - Do NOT try to automate clicking PDF buttons on publisher sites
-- Tell user: "Opened N tabs. Please click PDF on each page to download."
+- After opening, tell user: "Opened N tabs. Please click PDF on each page to download."
 - User has institutional access (e.g., Fudan → IEEE) so browser downloads will work

@@ -60,11 +60,19 @@ Plus:
 
 ### Phase 4: Download
 
-Download ALL papers automatically (no need to ask):
+First download open-access papers via curl automatically. Then **ask user for confirmation** before opening browser tabs for paywalled papers.
 
 **Step 1 — Programmatic (curl):** Download open-access papers (arXiv, MDPI, bioRxiv, etc.) via curl. Verify each file is a real PDF (>5KB, starts with %PDF).
 
-**Step 2 — Browser batch open (Playwright):** For ALL remaining papers that curl cannot download, open them all at once in separate browser tabs via `mcp__plugin_playwright-tools_playwright__browser_run_code`:
+**Step 2 — Ask user before opening browser:**
+
+Show the user the list of papers that need browser download and ask:
+
+> "N papers require browser download (institutional access). Open all in browser tabs? (y/n)"
+
+Only proceed after user confirms.
+
+**Step 3 — Browser batch open (Playwright):** After user confirms, open ALL remaining papers at once in separate browser tabs via `mcp__plugin_playwright-tools_playwright__browser_run_code`:
 
 ```javascript
 async (page) => {
@@ -79,7 +87,7 @@ async (page) => {
 };
 ```
 
-**Step 3 — Report:**
+**Step 4 — Report:**
 
 - List programmatically downloaded files with paths
 - List browser-opened tabs with paper titles

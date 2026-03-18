@@ -72,7 +72,11 @@ async (page) => {
 };
 ```
 
-Then tell the user: "Opened N tabs in your browser. Please click PDF on each page to download."
+**Before opening, ask the user for confirmation:**
+
+> "N papers require browser download (institutional access). Open all in browser tabs? (y/n)"
+
+Only open tabs after user confirms.
 
 ### Step 3: Report
 
