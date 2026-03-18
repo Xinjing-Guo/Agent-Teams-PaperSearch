@@ -1,0 +1,6 @@
+{
+  "name": "agent-teams-papersearch",
+  "version": "1.0.0",
+  "description": "Multi-agent academic paper search team — 5 AI agents search 14+ databases in parallel",
+  "plugin_path": "plugin/agent-teams-papersearch"
+}

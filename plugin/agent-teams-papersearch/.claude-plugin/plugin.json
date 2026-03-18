@@ -1,0 +1,21 @@
+{
+  "name": "agent-teams-papersearch",
+  "version": "1.0.0",
+  "description": "Multi-agent academic paper search team — 5 specialized AI agents perform parallel search across 14+ databases, aggregate results, download PDFs, and find mirror links.",
+  "author": {
+    "name": "Xinjing Guo",
+    "url": "https://github.com/Xinjing-Guo"
+  },
+  "repository": "https://github.com/Xinjing-Guo/Agent-Teams-PaperSearch",
+  "license": "MIT",
+  "keywords": [
+    "paper-search",
+    "academic",
+    "multi-agent",
+    "arxiv",
+    "google-scholar",
+    "semantic-scholar",
+    "researchgate",
+    "download"
+  ]
+}
