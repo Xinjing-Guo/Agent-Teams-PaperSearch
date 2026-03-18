@@ -1,6 +1,25 @@
 {
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "agent-teams-papersearch",
-  "version": "1.0.0",
-  "description": "Multi-agent academic paper search team — 5 AI agents search 14+ databases in parallel",
-  "plugin_path": "plugin/agent-teams-papersearch"
+  "description": "Multi-agent academic paper search team — 5 AI agents search 14+ databases in parallel, download PDFs, and generate review articles",
+  "owner": {
+    "name": "Xinjing Guo",
+    "email": "xinjing.guo@example.com"
+  },
+  "plugins": [
+    {
+      "name": "agent-teams-papersearch",
+      "description": "5-agent paper search team (Scout-Core, Scout-Domain, Scout-Cloud, Librarian, Archivist) with parallel 22-database search, Sci-Hub + Playwright download, and Pandoc review PDF generation",
+      "version": "1.0.0",
+      "author": {
+        "name": "Xinjing Guo",
+        "url": "https://github.com/Xinjing-Guo"
+      },
+      "source": "./plugin/agent-teams-papersearch",
+      "category": "research",
+      "tags": ["paper-search", "academic", "multi-agent", "arxiv", "google-scholar", "semantic-scholar", "researchgate", "download", "review"],
+      "homepage": "https://github.com/Xinjing-Guo/Agent-Teams-PaperSearch",
+      "repository": "https://github.com/Xinjing-Guo/Agent-Teams-PaperSearch"
+    }
+  ]
 }
