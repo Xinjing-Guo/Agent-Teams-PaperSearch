@@ -181,8 +181,7 @@
   <text x="530" y="593" fill="rgba(255,100,100,0.8)" font-size="10" font-weight="600">P4</text>
   <text x="550" y="593" fill="rgba(255,255,255,0.8)" font-size="11">Browser batch open (user confirms)</text>
 
-  <!-- Confirm indicator for P4 -->
-  <text x="722" y="593" fill="rgba(255,150,150,0.7)" font-size="9" font-style="italic">needs confirm</text>
+  <!-- (P4 requires user confirmation via prompt, not shown in diagram) -->
 
   <!-- ========== PHASE 4: REVIEW ========== -->
   <text x="30" y="700" fill="rgba(255,255,255,0.3)" font-size="11" font-weight="600" transform="rotate(-90,30,700)">PHASE 4</text>
@@ -198,32 +197,36 @@
   <text x="250" y="673" text-anchor="middle" fill="#302b63" font-size="14">📝</text>
   <text x="275" y="672" fill="#302b63" font-size="14" font-weight="700">Review Generator</text>
 
-  <text x="250" y="700" fill="rgba(255,255,255,0.8)" font-size="11">Group papers by approach · Summarize each contribution</text>
-  <text x="250" y="718" fill="rgba(255,255,255,0.8)" font-size="11">Chronological evolution · IEEE references · Export .md</text>
+  <text x="250" y="700" fill="rgba(255,255,255,0.8)" font-size="11">Group by approach · Summarize contributions · Timeline</text>
+  <text x="250" y="718" fill="rgba(255,255,255,0.8)" font-size="11">IEEE references · Pandoc + XeLaTeX → Review.pdf</text>
 
   <!-- ========== OUTPUT ========== -->
   <line x1="480" y1="740" x2="480" y2="760" stroke="rgba(255,255,255,0.4)" stroke-width="2" marker-end="url(#arrowWhite)"/>
 
   <!-- Output files -->
-  <rect x="200" y="765" width="560" height="95" rx="12" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+  <rect x="130" y="765" width="700" height="95" rx="12" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
   <text x="480" y="787" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="10" font-weight="600" letter-spacing="2">OUTPUT</text>
 
   <!-- File icons -->
-  <rect x="225" y="800" width="105" height="45" rx="8" fill="rgba(79,172,254,0.15)" stroke="rgba(79,172,254,0.4)" stroke-width="1"/>
-  <text x="277" y="818" text-anchor="middle" fill="#4facfe" font-size="10" font-weight="600">search-log.md</text>
-  <text x="277" y="835" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">26 papers + DBs</text>
+  <rect x="148" y="800" width="100" height="45" rx="8" fill="rgba(79,172,254,0.15)" stroke="rgba(79,172,254,0.4)" stroke-width="1"/>
+  <text x="198" y="818" text-anchor="middle" fill="#4facfe" font-size="10" font-weight="600">search-log.md</text>
+  <text x="198" y="835" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Papers + DBs</text>
 
-  <rect x="345" y="800" width="105" height="45" rx="8" fill="rgba(245,175,25,0.15)" stroke="rgba(245,175,25,0.4)" stroke-width="1"/>
-  <text x="397" y="818" text-anchor="middle" fill="#f5af19" font-size="10" font-weight="600">papers/*.pdf</text>
-  <text x="397" y="835" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Downloaded PDFs</text>
+  <rect x="262" y="800" width="100" height="45" rx="8" fill="rgba(245,175,25,0.15)" stroke="rgba(245,175,25,0.4)" stroke-width="1"/>
+  <text x="312" y="818" text-anchor="middle" fill="#f5af19" font-size="10" font-weight="600">papers/*.pdf</text>
+  <text x="312" y="835" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Downloaded PDFs</text>
 
-  <rect x="465" y="800" width="125" height="45" rx="8" fill="rgba(245,175,25,0.15)" stroke="rgba(245,175,25,0.4)" stroke-width="1"/>
-  <text x="527" y="818" text-anchor="middle" fill="#f5af19" font-size="10" font-weight="600">download-log.md</text>
-  <text x="527" y="835" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Status + links</text>
+  <rect x="376" y="800" width="110" height="45" rx="8" fill="rgba(245,175,25,0.15)" stroke="rgba(245,175,25,0.4)" stroke-width="1"/>
+  <text x="431" y="818" text-anchor="middle" fill="#f5af19" font-size="10" font-weight="600">download-log.md</text>
+  <text x="431" y="835" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Status + links</text>
 
-  <rect x="605" y="800" width="135" height="45" rx="8" fill="rgba(168,237,234,0.15)" stroke="rgba(168,237,234,0.4)" stroke-width="1"/>
-  <text x="672" y="818" text-anchor="middle" fill="#a8edea" font-size="10" font-weight="600">Review Article.md</text>
-  <text x="672" y="835" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Categorized + refs</text>
+  <rect x="500" y="800" width="110" height="45" rx="8" fill="rgba(168,237,234,0.15)" stroke="rgba(168,237,234,0.4)" stroke-width="1"/>
+  <text x="555" y="818" text-anchor="middle" fill="#a8edea" font-size="10" font-weight="600">Review.md</text>
+  <text x="555" y="835" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Categorized + refs</text>
+
+  <rect x="624" y="800" width="100" height="45" rx="8" fill="rgba(168,237,234,0.25)" stroke="rgba(168,237,234,0.6)" stroke-width="1.5"/>
+  <text x="674" y="818" text-anchor="middle" fill="#a8edea" font-size="10" font-weight="700">Review.pdf</text>
+  <text x="674" y="835" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9">Pandoc + XeLaTeX</text>
 
   <!-- Side stats -->
   <rect x="795" y="80" width="140" height="55" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
