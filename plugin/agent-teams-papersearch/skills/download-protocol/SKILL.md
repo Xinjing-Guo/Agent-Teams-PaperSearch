@@ -19,9 +19,13 @@ Docker-based MCP download tools (`download_arxiv`, `download_biorxiv`, etc.) sav
 | 1        | arXiv                      | `curl -L -o <dir>/<name>.pdf "https://arxiv.org/pdf/<id>"` | High         |
 | 2        | bioRxiv/medRxiv            | `curl -L` from PDF URL                                     | High         |
 | 3        | MDPI / OA repos            | `curl -L -A "Mozilla/5.0"` from direct PDF URL             | Medium       |
-| 4        | Paywalled / login-required | **Open all in browser via Playwright**                     | Always works |
+| 4        | Sci-Hub (Playwright)       | Navigate to sci-hub.ru/DOI → extract PDF URL → curl        | Medium       |
+| 5        | Paywalled / login-required | **Open all in browser via Playwright (user confirms)**     | Always works |
 
-**Do NOT use:** Docker MCP download tools (files lost), Sci-Hub curl (unreliable), ResearchGate curl (Cloudflare 403), IEEE iframe PDF extraction (fragile).
+**Sci-Hub mirrors (in order):** `https://sci-hub.ru`, `https://sci-hub.st`
+**Sci-Hub PDF extraction:** Look for `<object type="application/pdf" data="...">` on the page, build absolute URL, then curl download.
+
+**Do NOT use:** Docker MCP download tools (files lost), ResearchGate curl (Cloudflare 403), IEEE iframe PDF extraction (fragile).
 
 ## File Naming Convention
 

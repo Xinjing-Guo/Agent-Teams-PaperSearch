@@ -64,20 +64,22 @@ First download open-access papers via curl automatically. Then **ask user for co
 
 **Step 1 — Programmatic (curl):** Download open-access papers (arXiv, MDPI, bioRxiv, etc.) via curl. Verify each file is a real PDF (>5KB, starts with %PDF).
 
-**Step 2 — Ask user before opening browser:**
+**Step 2 — Sci-Hub batch (Playwright, automatic):** For remaining papers with DOIs, use Playwright to visit `sci-hub.ru/DOI` (fallback: `sci-hub.st/DOI`), extract PDF URL from `<object type="application/pdf" data="...">`, then curl download. No user confirmation needed.
 
-Show the user the list of papers that need browser download and ask:
+**Step 3 — Ask user before opening browser:**
+
+Show the user the list of papers that still failed and ask:
 
 > "N papers require browser download (institutional access). Open all in browser tabs? (y/n)"
 
 Only proceed after user confirms.
 
-**Step 3 — Browser batch open (Playwright):** After user confirms, open ALL remaining papers at once in separate browser tabs via `mcp__plugin_playwright-tools_playwright__browser_run_code`:
+**Step 4 — Browser batch open (Playwright):** After user confirms, open ALL remaining papers at once in separate browser tabs:
 
 ```javascript
 async (page) => {
   const urls = [
-    /* all DOI/publisher URLs for failed papers */
+    /* all DOI/publisher URLs for still-failed papers */
   ];
   const context = page.context();
   for (const url of urls) {
@@ -87,9 +89,9 @@ async (page) => {
 };
 ```
 
-**Step 4 — Report:**
+**Step 5 — Report:**
 
-- List programmatically downloaded files with paths
+- List programmatically downloaded files (curl + Sci-Hub) with paths
 - List browser-opened tabs with paper titles
 - Tell user: "Opened N tabs in your browser. Please click PDF on each page to download."
 
@@ -97,6 +99,6 @@ async (page) => {
 
 - ALWAYS launch all 3 scout agents in parallel — never sequentially
 - NEVER claim citation relationships without verification
-- For paywalled papers: open in browser via Playwright — do NOT attempt curl, Sci-Hub, or iframe extraction
-- Open ALL failed papers at once (one tab per paper) — never one at a time
+- Download priority: curl OA → Sci-Hub Playwright → browser batch open (user confirms)
+- Open ALL remaining papers at once (one tab per paper) — never one at a time
 - Present clear, formatted tables — not raw agent output
