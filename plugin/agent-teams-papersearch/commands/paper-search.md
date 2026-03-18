@@ -58,22 +58,37 @@ Plus:
 - ResearchGate links table (if any found)
 - Database coverage summary
 
-### Phase 4: Download (ask user)
+### Phase 4: Download
 
-Ask the user which papers to download. Then launch Librarian agent with:
+Download ALL papers automatically (no need to ask):
 
-- Paper details (arXiv IDs, DOIs, PDF URLs, ResearchGate URLs)
-- Download instructions
+**Step 1 — Programmatic (curl):** Download open-access papers (arXiv, MDPI, bioRxiv, etc.) via curl. Verify each file is a real PDF (>5KB, starts with %PDF).
 
-Present download results:
+**Step 2 — Browser batch open (Playwright):** For ALL remaining papers that curl cannot download, open them all at once in separate browser tabs via `mcp__plugin_playwright-tools_playwright__browser_run_code`:
 
-- Successful: file path
-- Failed: ALL manual download links (arXiv, ResearchGate, Publisher, Sci-Hub)
+```javascript
+async (page) => {
+  const urls = [
+    /* all DOI/publisher URLs for failed papers */
+  ];
+  const context = page.context();
+  for (const url of urls) {
+    await context.newPage().then((p) => p.goto(url, { waitUntil: "domcontentloaded", timeout: 15000 }).catch(() => {}));
+  }
+  return `Opened ${urls.length} tabs`;
+};
+```
+
+**Step 3 — Report:**
+
+- List programmatically downloaded files with paths
+- List browser-opened tabs with paper titles
+- Tell user: "Opened N tabs in your browser. Please click PDF on each page to download."
 
 ## Rules
 
 - ALWAYS launch all 3 scout agents in parallel — never sequentially
 - NEVER claim citation relationships without verification
-- ALWAYS provide manual links when download fails
+- For paywalled papers: open in browser via Playwright — do NOT attempt curl, Sci-Hub, or iframe extraction
+- Open ALL failed papers at once (one tab per paper) — never one at a time
 - Present clear, formatted tables — not raw agent output
-- Ask user before downloading (don't auto-download)

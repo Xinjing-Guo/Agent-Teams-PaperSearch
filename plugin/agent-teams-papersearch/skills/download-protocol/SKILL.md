@@ -14,38 +14,55 @@ Docker-based MCP download tools (`download_arxiv`, `download_biorxiv`, etc.) sav
 
 ## Download Priority Chain
 
-| Priority | Source          | Method                                                           | Reliability  |
-| -------- | --------------- | ---------------------------------------------------------------- | ------------ |
-| 1        | arXiv           | `curl -L -o ~/Downloads/<name>.pdf "https://arxiv.org/pdf/<id>"` | High         |
-| 2        | bioRxiv/medRxiv | `curl` from PDF URL                                              | High         |
-| 3        | Direct PDF URL  | `curl -L`                                                        | Medium       |
-| 4        | DOI fallback    | `download_with_fallback` MCP (tries OA + Sci-Hub)                | Low          |
-| 5        | Manual links    | Provide URLs to user                                             | Always works |
+| Priority | Source                     | Method                                                     | Reliability  |
+| -------- | -------------------------- | ---------------------------------------------------------- | ------------ |
+| 1        | arXiv                      | `curl -L -o <dir>/<name>.pdf "https://arxiv.org/pdf/<id>"` | High         |
+| 2        | bioRxiv/medRxiv            | `curl -L` from PDF URL                                     | High         |
+| 3        | MDPI / OA repos            | `curl -L -A "Mozilla/5.0"` from direct PDF URL             | Medium       |
+| 4        | Paywalled / login-required | **Open all in browser via Playwright**                     | Always works |
+
+**Do NOT use:** Docker MCP download tools (files lost), Sci-Hub curl (unreliable), ResearchGate curl (Cloudflare 403), IEEE iframe PDF extraction (fragile).
 
 ## File Naming Convention
 
-`<identifier>_<short-title>.pdf`
+`<##>_<Author><Year>_<Short_Title>.pdf`
 
 Examples:
 
-- `2411.04823_All-State-Model.pdf`
-- `10.1038_s41586-024-07386-0_Nature-Paper.pdf`
+- `01_Perumal2013_SPICE_Level3_IGZO.pdf`
+- `02_Ghittorelli2014_Analytical_IGZO_Model.pdf`
 
 ## Mandatory Post-Download Verification
 
-After every download attempt:
+After every curl download, verify the file is a real PDF:
 
 ```bash
-ls -la ~/Downloads/<filename>.pdf
+size=$(stat -f%z "$file")
+head_bytes=$(head -c 4 "$file")
+# Real PDF: size > 5000 AND head_bytes == "%PDF"
+# Otherwise: delete the file, mark as failed
 ```
 
-## When Download Fails — Required Output
+## When Programmatic Download Fails — Browser Fallback
 
-NEVER just say "download failed." Always provide:
+**Open ALL failed papers in browser tabs at once** using Playwright `browser_run_code`:
 
-1. arXiv PDF link (if arXiv ID exists)
-2. ResearchGate URL (if found by Scout-Cloud)
-3. Publisher URL via DOI: `https://doi.org/<DOI>`
-4. Sci-Hub mirror: `https://sci-hub.se/<DOI>`
+```javascript
+async (page) => {
+  const urls = [
+    /* DOI / IEEE / publisher URLs */
+  ];
+  const context = page.context();
+  for (const url of urls) {
+    await context.newPage().then((p) => p.goto(url, { waitUntil: "domcontentloaded", timeout: 15000 }).catch(() => {}));
+  }
+  return `Opened ${urls.length} tabs`;
+};
+```
 
-Format as actionable links the user can click in their browser.
+Key rules:
+
+- Open ALL failed papers at once — one tab per paper
+- Do NOT try to automate clicking PDF buttons on publisher sites
+- Tell user: "Opened N tabs. Please click PDF on each page to download."
+- User has institutional access (e.g., Fudan → IEEE) so browser downloads will work
