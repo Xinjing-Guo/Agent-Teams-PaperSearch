@@ -3,7 +3,7 @@
 > A multi-agent academic paper search framework powered by Claude Code. Five specialized AI agents search 14+ databases in parallel, aggregate results, download PDFs, and find mirror links.
 
 <p align="center">
-  <img src="docs/architecture.svg" alt="Agent Teams PaperSearch Architecture" width="100%"/>
+  <img src="docs/architecture.svg?v=2" alt="Agent Teams PaperSearch Architecture" width="100%"/>
 </p>
 
 ## Quick Install
